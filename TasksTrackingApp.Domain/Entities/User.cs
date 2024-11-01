@@ -29,6 +29,6 @@ namespace TasksTrackingApp.Domain.Entities
         public string Username { get; set; } = string.Empty;
         public ICollection<Workspace>? Workspaces { get; set; }
         public string RefreshToken { get; set; } = string.Empty;
-        public string RefreshTokenExpirationTime { get; set; } = string.Empty;
+        public DateTime RefreshTokenExpirationTime { get; set; }
     }
 }

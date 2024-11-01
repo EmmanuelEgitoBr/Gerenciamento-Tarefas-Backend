@@ -19,4 +19,10 @@
     <ProjectReference Include="..\TasksTrackingApp.Domain\TasksTrackingApp.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Repository\IRepositories\" />
+    <Folder Include="Repository\UnitOfWork\" />
+    <Folder Include="Repository\Repositories\" />
+  </ItemGroup>
+
 </Project>
