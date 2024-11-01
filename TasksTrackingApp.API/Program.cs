@@ -9,6 +9,7 @@ builder.AddDatabase();
 builder.AddMediator();
 builder.AddValidations();
 builder.AddMapper();
+builder.AddRepositories();
 
 var app = builder.Build();
 

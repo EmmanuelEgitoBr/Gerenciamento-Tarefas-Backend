@@ -7,6 +7,8 @@ using TasksTrackingApp.Application.UserCQ.Commands;
 using TasksTrackingApp.Application.Mappings;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using TasksTrackingApp.Infrastructure.Repository.IRepositories;
+using TasksTrackingApp.Infrastructure.Repository.Repositories;
 
 namespace TasksTrackingApp.API.Extensions
 {
@@ -65,6 +67,11 @@ namespace TasksTrackingApp.API.Extensions
         public static void AddMapper(this WebApplicationBuilder builder)
         {
             builder.Services.AddAutoMapper(typeof(ProfileMappings).Assembly);
+        }
+
+        public static void AddRepositories(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
         }
 
     }
