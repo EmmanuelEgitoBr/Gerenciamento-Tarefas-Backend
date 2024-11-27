@@ -9,6 +9,7 @@ using Microsoft.OpenApi.Models;
 using System.Reflection;
 using TasksTrackingApp.Infrastructure.Repository.IRepositories;
 using TasksTrackingApp.Infrastructure.Repository.Repositories;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace TasksTrackingApp.API.Extensions
 {
@@ -48,9 +49,18 @@ namespace TasksTrackingApp.API.Extensions
         public static void AddDatabase(this WebApplicationBuilder builder) 
         {
             var configuration = builder.Configuration;
+            var connection = configuration.GetConnectionString("SqlConnection");
 
             builder.Services.AddDbContext<TasksDbContext>(options =>
-                    options.UseSqlServer(configuration.GetConnectionString("SqlConnection")));
+                    options.UseSqlServer(connection));
+
+            builder.Services.AddHealthChecks().AddSqlServer(connection!, name: "SQL Health Check");
+
+            builder.Services.AddHealthChecksUI(options => {
+                    options.SetEvaluationTimeInSeconds(10); // Tempo entre as verificações
+                    options.MaximumHistoryEntriesPerEndpoint(100); // Máximo de entradas de histórico por endpoint
+            }).AddSqlServerStorage(connection!);
+            
         }
 
         public static void AddMediator(this WebApplicationBuilder builder)

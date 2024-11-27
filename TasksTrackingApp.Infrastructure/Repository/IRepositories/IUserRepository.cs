@@ -1,6 +1,9 @@
-﻿namespace TasksTrackingApp.Infrastructure.Repository.IRepositories
+﻿using TasksTrackingApp.Domain.Entities;
+using TasksTrackingApp.Infrastructure.Repository.UnitOfWork;
+
+namespace TasksTrackingApp.Infrastructure.Repository.IRepositories
 {
-    public interface IUserRepository
+    public interface IUserRepository : IBaseRepository<User>
     {
     }
 }

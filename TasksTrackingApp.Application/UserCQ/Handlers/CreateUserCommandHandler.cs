@@ -5,26 +5,26 @@ using TasksTrackingApp.Application.Response;
 using TasksTrackingApp.Application.UserCQ.Commands;
 using TasksTrackingApp.Domain.Entities;
 using TasksTrackingApp.Infrastructure.Persistence;
+using TasksTrackingApp.Infrastructure.Repository.IRepositories;
 
 namespace TasksTrackingApp.Application.UserCQ.Handlers
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ResponseBase<UserDto>>
     {
-        private readonly TasksDbContext _tasksDbContext;
         private readonly IMapper _mapper;
+        private readonly IUserRepository _userRepository;
 
-        public CreateUserCommandHandler(TasksDbContext tasksDbContext, IMapper mapper)
+        public CreateUserCommandHandler(IMapper mapper, IUserRepository userRepository)
         {
-            _tasksDbContext = tasksDbContext;
             _mapper = mapper;
+            _userRepository = userRepository;
         }
 
         public async Task<ResponseBase<UserDto>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
         {
             var user = _mapper.Map<User>(request);
 
-            _tasksDbContext.Users.Add(user);
-            _tasksDbContext.SaveChanges();
+            await _userRepository.CreateAsync(user);
 
             return new ResponseBase<UserDto>()
             {

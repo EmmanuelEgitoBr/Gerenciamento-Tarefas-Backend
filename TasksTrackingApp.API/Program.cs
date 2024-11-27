@@ -1,3 +1,5 @@
+using HealthChecks.UI.Client;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using TasksTrackingApp.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -19,6 +21,17 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseHealthChecks("/health", new HealthCheckOptions()
+{
+    Predicate = _ => true,
+    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+});
+
+app.UseHealthChecksUI(options =>
+{
+    options.UIPath = "/dashboard";
+});
 
 app.UseHttpsRedirection();
 
