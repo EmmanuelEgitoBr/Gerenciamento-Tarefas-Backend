@@ -7,11 +7,11 @@ namespace TasksTrackingApp.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class AuthController : ControllerBase
     {
         private readonly IMediator _mediator;
-        
-        public UserController(IMediator mediator)
+
+        public AuthController(IMediator mediator)
         {
             _mediator = mediator;
         }
@@ -28,6 +28,7 @@ namespace TasksTrackingApp.API.Controllers
         [HttpPost("Create-User")]
         public async Task<ActionResult<UserDto>> CreateUser(CreateUserCommand command)
         {
+            //var request = await _mediator.Send(command);
             return Ok(await _mediator.Send(command));
         }
     }
