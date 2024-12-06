@@ -2,7 +2,8 @@
 {
     public record ResponseBase<T>
     {
-        public ResponseInfo? ResponseInfo { get; set; }
+        public string? Title { get; set; }
+        public int HttpStatus { get; set; }
         public T? Value { get; set; }
     }
 }

@@ -12,6 +12,7 @@ builder.AddMediator();
 builder.AddValidations();
 builder.AddMapper();
 builder.AddRepositories();
+builder.AddJwtAuth();
 
 var app = builder.Build();
 

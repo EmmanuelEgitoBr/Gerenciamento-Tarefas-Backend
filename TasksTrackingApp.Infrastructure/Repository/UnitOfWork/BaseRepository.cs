@@ -16,12 +16,14 @@ namespace TasksTrackingApp.Infrastructure.Repository.UnitOfWork
         public async Task<T> CreateAsync(T commandCreate)
         {
             await _tasksDbContext.Set<T>().AddAsync(commandCreate);
+            _tasksDbContext.SaveChanges();
             return commandCreate;
         }
 
         public Task Delete(Guid Id)
         {
             _tasksDbContext.Remove(Id);
+            _tasksDbContext?.SaveChanges();
             return Task.CompletedTask;
         }
 
@@ -38,6 +40,7 @@ namespace TasksTrackingApp.Infrastructure.Repository.UnitOfWork
         public T Update(T commandUpdate)
         {
             _tasksDbContext.Set<T>().Update(commandUpdate);
+            _tasksDbContext.SaveChanges();
             return commandUpdate;
         }
     }

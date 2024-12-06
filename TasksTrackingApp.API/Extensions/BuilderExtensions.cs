@@ -1,20 +1,43 @@
-﻿using FluentValidation.AspNetCore;
-using FluentValidation;
+﻿using FluentValidation;
+using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using TasksTrackingApp.Application.UserCQ.Validators;
-using TasksTrackingApp.Infrastructure.Persistence;
-using TasksTrackingApp.Application.UserCQ.Commands;
-using TasksTrackingApp.Application.Mappings;
+using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Reflection;
+using System.Text;
+using TasksTrackingApp.Application.Mappings;
+using TasksTrackingApp.Application.UserCQ.Commands;
+using TasksTrackingApp.Application.UserCQ.Validators;
+using TasksTrackingApp.Domain.Abstractions;
+using TasksTrackingApp.Infrastructure.Persistence;
 using TasksTrackingApp.Infrastructure.Repository.IRepositories;
 using TasksTrackingApp.Infrastructure.Repository.Repositories;
-using Microsoft.Extensions.DependencyInjection;
+using TasksTrackingApp.Services.AuthService;
 
 namespace TasksTrackingApp.API.Extensions
 {
     public static class BuilderExtensions
     {
+        public static void AddJwtAuth(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddScoped<IAuthService, AuthService>();
+
+            var configuration = builder.Configuration;
+
+            builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options => 
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidIssuer = configuration["JWT:Issuer"],
+                    ValidAudience = configuration["JWT:Audience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT:Key"]!))
+                });
+        }
+
         public static void AddServices(this WebApplicationBuilder builder)
         {
             builder.Services.AddControllers();

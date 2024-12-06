@@ -10,11 +10,11 @@ namespace TasksTrackingApp.Application.Mappings
         public ProfileMappings()
         {
             CreateMap<CreateUserCommand, User>()
-                .ForMember(x => x.RefreshToken, x => x.MapFrom(x => GenerateGuid()))
+                .ForMember(x => x.RefreshToken, x => x.AllowNull())
                 .ForMember(x => x.RefreshTokenExpirationTime, x => x.MapFrom(x => GenerateExpirationTime()))
-                .ForMember(x => x.PasswordHash, x => x.MapFrom(x => x.Password));
+                .ForMember(x => x.PasswordHash, x => x.AllowNull());
             
-            CreateMap<User, UserDto>().ForMember(x => x.Token, x => x.MapFrom(x => GenerateGuid()));
+            CreateMap<User, UserDto>().ForMember(x => x.Token, x => x.AllowNull());
         }
 
         private string GenerateGuid()
@@ -24,7 +24,7 @@ namespace TasksTrackingApp.Application.Mappings
 
         private DateTime GenerateExpirationTime()
         {
-            return DateTime.Now.AddDays(5);
+            return DateTime.Now.AddHours(3);
         }
     }
 }
