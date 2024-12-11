@@ -2,7 +2,8 @@
 {
     public enum StatusItemEnum
     {
-        Active = 1,
-        Filled = 2
+        Aguardando = 0,
+        Andamento = 1,
+        Concluído = 2
     }
 }

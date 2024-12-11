@@ -8,6 +8,7 @@ namespace TasksTrackingApp.Infrastructure.Repository.UnitOfWork
         Task<IEnumerable<T>> GetAllAsync();
         Task<T> CreateAsync(T commandCreate);
         T Update(T commandUpdate);
-        Task Delete(Guid id);
+        Task Delete(T entity);
+        Task DeleteById(Guid Id);
     }
 }

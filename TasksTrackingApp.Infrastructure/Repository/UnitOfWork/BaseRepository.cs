@@ -20,7 +20,14 @@ namespace TasksTrackingApp.Infrastructure.Repository.UnitOfWork
             return commandCreate;
         }
 
-        public Task Delete(Guid Id)
+        public Task Delete(T entity)
+        {
+            _tasksDbContext.Set<T>().Remove(entity);
+            _tasksDbContext?.SaveChanges();
+            return Task.CompletedTask;
+        }
+
+        public Task DeleteById(Guid Id)
         {
             _tasksDbContext.Remove(Id);
             _tasksDbContext?.SaveChanges();

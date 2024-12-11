@@ -15,8 +15,8 @@ namespace TasksTrackingApp.API.Controllers
             //group.MapGet("get-workspace", GetWorkspace);
             //group.MapGet("get-workspaces", GetAllWorkspaces);
             group.MapPost("create-workspace", CreateWorkspace);
-            //group.MapPut("update-workspace", UpdateWorkspace);
-            //group.MapDelete("delete-workspace", DeleteWorkspace);
+            group.MapPut("update-workspace", EditWorkspace);
+            group.MapDelete("delete-workspace/{workspaceId}", DeleteWorkspace);
         }
 
         //DELEGATES
@@ -39,19 +39,27 @@ namespace TasksTrackingApp.API.Controllers
 
             if (result.Value is null) return Results.BadRequest(result.Title);
 
-            return Results.Ok(result.Value);
+            return Results.Ok(result);
         }
 
-        /*
-        public static async Task<IResult> UpdateWorkspace([FromServices] IMediator _mediator)
+        public static async Task<IResult> EditWorkspace([FromServices] IMediator _mediator,
+                                                            [FromBody] EditWorkspaceCommand command)
         {
+            var result = await _mediator.Send(command);
 
+            if (result.Value is null) return Results.BadRequest(result.Title);
+
+            return Results.Ok(result);
         }
 
-        public static async Task<IResult> DeleteWorkspace([FromServices] IMediator _mediator)
+        public static async Task<IResult> DeleteWorkspace([FromServices] IMediator _mediator,
+                                                            Guid workspaceId)
         {
+            var result = await _mediator.Send(new DeleteWorkspaceCommand { Id = workspaceId});
 
+            if (result.Value is null) return Results.BadRequest(result.Title);
+
+            return Results.Ok(result);
         }
-        */
     }
 }

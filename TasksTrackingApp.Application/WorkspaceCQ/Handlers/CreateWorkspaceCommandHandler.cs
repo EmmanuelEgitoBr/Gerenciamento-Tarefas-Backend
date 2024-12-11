@@ -8,7 +8,7 @@ using TasksTrackingApp.Infrastructure.Repository.UnitOfWork;
 
 namespace TasksTrackingApp.Application.WorkspaceCQ.Handlers
 {
-    public class CreateWorkspaceCommandHandler : IRequestHandler<CreateWorkspaceCommand, ResponseBase<CreateWorkspaceDto>>
+    public class CreateWorkspaceCommandHandler : IRequestHandler<CreateWorkspaceCommand, ResponseBase<WorkspaceDto>>
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -19,13 +19,13 @@ namespace TasksTrackingApp.Application.WorkspaceCQ.Handlers
             _mapper = mapper;
         }
 
-        public async Task<ResponseBase<CreateWorkspaceDto>> Handle(CreateWorkspaceCommand request, CancellationToken cancellationToken)
+        public async Task<ResponseBase<WorkspaceDto>> Handle(CreateWorkspaceCommand request, CancellationToken cancellationToken)
         {
             var user = await _unitOfWork.UserRepository.GetAsync(u => u.Id == request.UserId);
 
             if (user == null)
             {
-                return new ResponseBase<CreateWorkspaceDto>
+                return new ResponseBase<WorkspaceDto>
                 {
                     Title = "Usuário não encontrado",
                     HttpStatus = 400,
@@ -42,11 +42,11 @@ namespace TasksTrackingApp.Application.WorkspaceCQ.Handlers
             await _unitOfWork.WorkspaceRepository.CreateAsync(workspace);
             _unitOfWork.Commit();
 
-            return new ResponseBase<CreateWorkspaceDto>
+            return new ResponseBase<WorkspaceDto>
             {
                 Title = "Workspace criado com êxito",
                 HttpStatus = 200,
-                Value = _mapper.Map<CreateWorkspaceDto>(workspace)
+                Value = _mapper.Map<WorkspaceDto>(workspace)
             };
         }
     }

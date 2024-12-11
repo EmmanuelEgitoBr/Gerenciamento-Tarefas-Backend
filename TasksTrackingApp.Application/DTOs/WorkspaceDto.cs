@@ -2,7 +2,7 @@
 
 namespace TasksTrackingApp.Application.DTOs
 {
-    public class CreateWorkspaceDto
+    public class WorkspaceDto
     {
         public Guid Id { get; set; }
         public string? Title { get; set; }

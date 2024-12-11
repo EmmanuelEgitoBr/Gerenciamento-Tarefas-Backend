@@ -8,7 +8,7 @@ namespace TasksTrackingApp.Application.Mappings
     {
         public WorkspaceMappings() 
         {
-            CreateMap<Workspace, CreateWorkspaceDto>()
+            CreateMap<Workspace, WorkspaceDto>()
                 .ForMember(x => x.UserId, x => x.MapFrom(x => x.User!.Id));
         }
     }
