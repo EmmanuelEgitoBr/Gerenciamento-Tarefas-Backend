@@ -13,6 +13,7 @@ using TasksTrackingApp.Domain.Abstractions;
 using TasksTrackingApp.Infrastructure.Persistence;
 using TasksTrackingApp.Infrastructure.Repository.IRepositories;
 using TasksTrackingApp.Infrastructure.Repository.Repositories;
+using TasksTrackingApp.Infrastructure.Repository.UnitOfWork;
 using TasksTrackingApp.Services.AuthService;
 
 namespace TasksTrackingApp.API.Extensions
@@ -110,6 +111,7 @@ namespace TasksTrackingApp.API.Extensions
 
         public static void AddRepositories(this WebApplicationBuilder builder)
         {
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
         }
 

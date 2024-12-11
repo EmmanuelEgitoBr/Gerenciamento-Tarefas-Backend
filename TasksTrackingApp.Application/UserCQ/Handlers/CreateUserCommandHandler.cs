@@ -5,22 +5,22 @@ using TasksTrackingApp.Application.Response;
 using TasksTrackingApp.Application.UserCQ.Commands;
 using TasksTrackingApp.Domain.Abstractions;
 using TasksTrackingApp.Domain.Entities;
-using TasksTrackingApp.Infrastructure.Repository.IRepositories;
+using TasksTrackingApp.Infrastructure.Repository.UnitOfWork;
 
 namespace TasksTrackingApp.Application.UserCQ.Handlers
 {
     public class CreateUserCommandHandler : IRequestHandler<CreateUserCommand, ResponseBase<UserDto>>
     {
         private readonly IMapper _mapper;
-        private readonly IUserRepository _userRepository;
+        private readonly IUnitOfWork _unitOfWork;
         private readonly IAuthService _authService;
 
         public CreateUserCommandHandler(IMapper mapper,
-                                        IUserRepository userRepository,
+                                        IUnitOfWork unitOfWork,
                                         IAuthService authService)
         {
             _mapper = mapper;
-            _userRepository = userRepository;
+            _unitOfWork = unitOfWork;
             _authService = authService;
         }
 
@@ -43,7 +43,8 @@ namespace TasksTrackingApp.Application.UserCQ.Handlers
             var userDto = _mapper.Map<UserDto>(user);
             userDto.Token = _authService.GenerateJwtToken(user.Email, user.Username);
 
-            await _userRepository.CreateAsync(user);
+            await _unitOfWork.UserRepository.CreateAsync(user);
+            _unitOfWork.Commit();
 
             return new ResponseBase<UserDto>()
             {
