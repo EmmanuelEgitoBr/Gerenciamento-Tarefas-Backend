@@ -113,6 +113,7 @@ namespace TasksTrackingApp.API.Extensions
         {
             builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IUserRepository, UserRepository>();
+            builder.Services.AddScoped<IWorkspaceRepository, WorkspaceRepository>();
         }
 
     }

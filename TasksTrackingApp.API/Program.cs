@@ -1,5 +1,6 @@
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Diagnostics.HealthChecks;
+using TasksTrackingApp.API.Controllers;
 using TasksTrackingApp.API.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -39,5 +40,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.WorkspacesRoutes();
 
 app.Run();
