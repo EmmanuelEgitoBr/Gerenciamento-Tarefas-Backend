@@ -10,7 +10,7 @@ namespace TasksTrackingApp.API.Controllers
         {
             var group = app.MapGroup("workspaces").WithTags("Workspaces");
 
-            //group.MapGet("get-workspace", GetWorkspace);
+            group.MapGet("get-workspace/{workspaceId}", GetWorkspace);
             //group.MapGet("get-workspaces", GetAllWorkspaces);
             group.MapPost("create-workspace", CreateWorkspace);
             group.MapPut("update-workspace", EditWorkspace);
@@ -19,11 +19,24 @@ namespace TasksTrackingApp.API.Controllers
 
         //DELEGATES
 
-        /*
-        public static async Task<IResult> GetWorkspace([FromServices] IMediator _mediator)
+        /// <summary>
+        /// Endpoint para retornar um workspace por Id
+        /// </summary>
+        /// <remarks>
+        /// POST api/workspaces/create-workspace
+        /// </remarks>
+        /// <returns></returns>
+        public static async Task<IResult> GetWorkspace([FromServices] IMediator _mediator,
+                                                       Guid workspaceId )
         {
-            
+            var result = await _mediator.Send(new GetWorkspaceCommand { Id = workspaceId });
+
+            if (result.Value is null) return Results.BadRequest(result.Title);
+
+            return Results.Ok(result);
         }
+
+        /*
         public static async Task<IResult> GetAllWorkspaces([FromServices] IMediator _mediator)
         {
 
