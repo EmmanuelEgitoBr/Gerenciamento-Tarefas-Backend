@@ -15,7 +15,7 @@ namespace TasksTrackingApp.Domain.Entities
         [Required]
         public Guid? UserId { get; set; }
         public ICollection<ListCard> ListCards { get; set; } = new List<ListCard>();
-        public StatusItemEnum Status { get; set; } = StatusItemEnum.Aguardando;
+        public StatusItemEnum Status { get; set; } = StatusItemEnum.Ativo;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
     }
 }

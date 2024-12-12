@@ -5,5 +5,6 @@ namespace TasksTrackingApp.Infrastructure.Repository.IRepositories
 {
     public interface IWorkspaceRepository : IBaseRepository<Workspace>
     {
+        Task<List<Workspace>> GetAllWorkspacesByUserIdAsync(Guid userId);
     }
 }

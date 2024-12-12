@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TasksTrackingApp.Application.WorkspaceCQ.Commands;
+using TasksTrackingApp.Application.WorkspaceCQ.Queries;
 
 namespace TasksTrackingApp.API.Controllers
 {
@@ -11,7 +12,7 @@ namespace TasksTrackingApp.API.Controllers
             var group = app.MapGroup("workspaces").WithTags("Workspaces");
 
             group.MapGet("get-workspace/{workspaceId}", GetWorkspace);
-            //group.MapGet("get-workspaces", GetAllWorkspaces);
+            group.MapGet("get-workspaces/{userId:guid}/{pageSize:int}/{pageIndex:int}", GetAllWorkspaces);
             group.MapPost("create-workspace", CreateWorkspace);
             group.MapPut("update-workspace", EditWorkspace);
             group.MapDelete("delete-workspace/{workspaceId}", DeleteWorkspace);
@@ -23,26 +24,43 @@ namespace TasksTrackingApp.API.Controllers
         /// Endpoint para retornar um workspace por Id
         /// </summary>
         /// <remarks>
-        /// POST api/workspaces/create-workspace
+        /// POST api/workspaces/get-workspace
         /// </remarks>
         /// <returns></returns>
         public static async Task<IResult> GetWorkspace([FromServices] IMediator _mediator,
                                                        Guid workspaceId )
         {
-            var result = await _mediator.Send(new GetWorkspaceCommand { Id = workspaceId });
+            var result = await _mediator.Send(new GetWorkspaceQuery { Id = workspaceId });
 
             if (result.Value is null) return Results.BadRequest(result.Title);
 
             return Results.Ok(result);
         }
 
-        /*
-        public static async Task<IResult> GetAllWorkspaces([FromServices] IMediator _mediator)
+        /// <summary>
+        /// Endpoint de retorno paginado de todos os workspaces
+        /// </summary>
+        /// <remarks>
+        /// POST api/workspaces/get-workspaces
+        /// </remarks>
+        /// <returns></returns>
+        public static async Task<IResult> GetAllWorkspaces([FromServices] IMediator _mediator,
+                                                           Guid userId,
+                                                           int pageSize,
+                                                           int pageIndex)
         {
+            var result = await _mediator.Send(new GetAllWorkspacesQuery
+            {
+                UserId = userId,
+                PageSize = pageSize,
+                PageIndex = pageIndex
+            });
 
+            if (result.Value is null) return Results.BadRequest(result.Title);
+
+            return Results.Ok(result);
         }
-        */
-
+        
         /// <summary>
         /// Endpoint para criação de workspace
         /// </summary>

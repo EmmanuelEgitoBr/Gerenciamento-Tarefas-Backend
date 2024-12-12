@@ -2,8 +2,8 @@
 {
     public enum StatusItemEnum
     {
-        Aguardando = 0,
-        Andamento = 1,
-        Concluído = 2
+        Ativo = 1,
+        Completo = 2,
+        Abandonado = 3
     }
 }

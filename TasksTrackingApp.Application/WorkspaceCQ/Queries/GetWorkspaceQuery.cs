@@ -2,9 +2,9 @@
 using TasksTrackingApp.Application.DTOs;
 using TasksTrackingApp.Application.Response;
 
-namespace TasksTrackingApp.Application.WorkspaceCQ.Commands
+namespace TasksTrackingApp.Application.WorkspaceCQ.Queries
 {
-    public record GetWorkspaceCommand : IRequest<ResponseBase<WorkspaceDto>>
+    public class GetWorkspaceQuery : IRequest<ResponseBase<WorkspaceDto>>
     {
         public Guid Id { get; set; }
     }
