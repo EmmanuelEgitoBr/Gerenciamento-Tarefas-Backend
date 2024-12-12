@@ -8,7 +8,7 @@ namespace TasksTrackingApp.Domain.Entities
         public string Title { get; set; } = string.Empty;
         public StatusItemEnum Status { get; set; }
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
-        public Workspace? Workspace { get; set; }
+        public Guid WorkspaceId { get; set; }
         public ICollection<Card> Cards { get; set; } = new List<Card>();
     }
 }

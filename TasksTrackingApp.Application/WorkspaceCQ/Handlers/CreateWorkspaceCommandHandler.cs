@@ -35,7 +35,7 @@ namespace TasksTrackingApp.Application.WorkspaceCQ.Handlers
 
             var workspace = new Workspace()
             {
-                User = user,
+                UserId = user.Id,
                 Title = request.Title!
             };
 

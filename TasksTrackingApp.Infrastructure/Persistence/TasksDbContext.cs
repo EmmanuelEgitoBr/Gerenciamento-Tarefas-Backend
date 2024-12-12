@@ -7,8 +7,8 @@ namespace TasksTrackingApp.Infrastructure.Persistence
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Workspace> Workspaces { get; set; }
-        public DbSet<ListCard> Cards { get; set; }
-        public DbSet<Card> Columns { get; set; }
+        public DbSet<ListCard> CardLists { get; set; }
+        public DbSet<Card> Cards { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

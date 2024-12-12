@@ -13,7 +13,7 @@ namespace TasksTrackingApp.Domain.Entities
         public string Title { get; set; } = string.Empty;
 
         [Required]
-        public User? User { get; set; }
+        public Guid? UserId { get; set; }
         public ICollection<ListCard> ListCards { get; set; } = new List<ListCard>();
         public StatusItemEnum Status { get; set; } = StatusItemEnum.Aguardando;
         public DateTime CreatedAt { get; set; } = DateTime.Now;
