@@ -5,5 +5,6 @@ namespace TasksTrackingApp.Domain.Interfaces.IRepositories
 {
     public interface ICardRepository : IBaseRepository<Card>
     {
+        Task<List<Card>> GetAllCardsByListId(Guid listCardId);
     }
 }

@@ -33,13 +33,6 @@ namespace TasksTrackingApp.Application.WorkspaceCQ.Handlers
                 };
             }
 
-            var listCards = await _unitOfWork.ListCardRepository.GetAllCardListByWorkspaceId(request.Id);
-
-            if (listCards is not null)
-            {
-                workspace.ListCards = listCards;
-            }
-
             var workspaceDto = _mapper.Map<WorkspaceDto>(workspace);
 
             return new ResponseBase<WorkspaceDto>

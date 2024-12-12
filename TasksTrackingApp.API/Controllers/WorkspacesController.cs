@@ -24,7 +24,7 @@ namespace TasksTrackingApp.API.Controllers
         /// Endpoint para retornar um workspace por Id
         /// </summary>
         /// <remarks>
-        /// POST api/workspaces/get-workspace
+        /// GET api/workspaces/get-workspace
         /// </remarks>
         /// <returns></returns>
         public static async Task<IResult> GetWorkspace([FromServices] IMediator _mediator,
@@ -34,14 +34,14 @@ namespace TasksTrackingApp.API.Controllers
 
             if (result.Value is null) return Results.BadRequest(result.Title);
 
-            return Results.Ok(result);
+            return Results.Ok(result.Value);
         }
 
         /// <summary>
         /// Endpoint de retorno paginado de todos os workspaces
         /// </summary>
         /// <remarks>
-        /// POST api/workspaces/get-workspaces
+        /// GET api/workspaces/get-workspaces
         /// </remarks>
         /// <returns></returns>
         public static async Task<IResult> GetAllWorkspaces([FromServices] IMediator _mediator,
@@ -58,7 +58,7 @@ namespace TasksTrackingApp.API.Controllers
 
             if (result.Value is null) return Results.BadRequest(result.Title);
 
-            return Results.Ok(result);
+            return Results.Ok(result.Value);
         }
         
         /// <summary>
@@ -75,14 +75,14 @@ namespace TasksTrackingApp.API.Controllers
 
             if (result.Value is null) return Results.BadRequest(result.Title);
 
-            return Results.Ok(result);
+            return Results.Ok(result.Value);
         }
 
         /// <summary>
         /// Endpoint para edição de workspace
         /// </summary>
         /// <remarks>
-        /// POST api/workspaces/update-workspace
+        /// PUT api/workspaces/update-workspace
         /// </remarks>
         /// <returns></returns>
         public static async Task<IResult> EditWorkspace([FromServices] IMediator _mediator,
@@ -92,14 +92,14 @@ namespace TasksTrackingApp.API.Controllers
 
             if (result.Value is null) return Results.BadRequest(result.Title);
 
-            return Results.Ok(result);
+            return Results.Ok(result.Value);
         }
 
         /// <summary>
         /// Endpoint para exclusão de workspace
         /// </summary>
         /// <remarks>
-        /// POST api/workspaces/delete-workspace
+        /// DELETE api/workspaces/delete-workspace
         /// </remarks>
         /// <returns></returns>
         public static async Task<IResult> DeleteWorkspace([FromServices] IMediator _mediator,
@@ -109,7 +109,7 @@ namespace TasksTrackingApp.API.Controllers
 
             if (result.Value is null) return Results.BadRequest(result.Title);
 
-            return Results.Ok(result);
+            return Results.Ok(result.Value);
         }
     }
 }

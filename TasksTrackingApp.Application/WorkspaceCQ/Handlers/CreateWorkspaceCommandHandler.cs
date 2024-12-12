@@ -28,7 +28,7 @@ namespace TasksTrackingApp.Application.WorkspaceCQ.Handlers
                 return new ResponseBase<WorkspaceDto>
                 {
                     Title = "Usuário não encontrado",
-                    HttpStatus = 400,
+                    HttpStatus = 404,
                     Value = null
                 };
             }
@@ -45,7 +45,7 @@ namespace TasksTrackingApp.Application.WorkspaceCQ.Handlers
             return new ResponseBase<WorkspaceDto>
             {
                 Title = "Workspace criado com êxito",
-                HttpStatus = 200,
+                HttpStatus = 201,
                 Value = _mapper.Map<WorkspaceDto>(workspace)
             };
         }
