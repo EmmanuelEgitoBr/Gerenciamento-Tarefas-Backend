@@ -50,7 +50,7 @@ namespace TasksTrackingApp.API.Controllers
         }
 
         /// <summary>
-        /// Endpoint que edita uma lista de cards pelo seu Id
+        /// Endpoint que edita uma lista de cards
         /// </summary>
         /// <remarks>
         /// PUT api/cardlists/update-cardlist

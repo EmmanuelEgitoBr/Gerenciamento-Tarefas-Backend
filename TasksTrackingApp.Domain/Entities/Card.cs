@@ -17,6 +17,6 @@ namespace TasksTrackingApp.Domain.Entities
         public DateTime CreatedAt { get; set; } = DateTime.Now;
         public DateTime Deadline { get; set; }
         public Guid ListCardId { get; set; }
-        public StatusCardEnum Status { get; set; }
+        public StatusCardEnum Status { get; set; } = StatusCardEnum.Todo;
     }
 }
