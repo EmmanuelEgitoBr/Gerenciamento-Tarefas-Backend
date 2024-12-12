@@ -10,5 +10,6 @@ namespace TasksTrackingApp.Infrastructure.Repository.UnitOfWork
         T Update(T commandUpdate);
         Task Delete(T entity);
         Task DeleteById(Guid Id);
+        Task DeleteRange(List<T> range);
     }
 }

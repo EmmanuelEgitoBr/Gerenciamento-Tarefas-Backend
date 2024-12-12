@@ -6,6 +6,8 @@ namespace TasksTrackingApp.Infrastructure.Repository.UnitOfWork
     {
         IUserRepository UserRepository { get; }
         IWorkspaceRepository WorkspaceRepository { get; }
+        IListCardRepository ListCardRepository { get; }
+        ICardRepository CardRepository { get; }
         public void Commit();
     }
 }

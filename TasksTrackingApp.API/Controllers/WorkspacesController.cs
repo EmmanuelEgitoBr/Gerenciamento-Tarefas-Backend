@@ -1,8 +1,6 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using TasksTrackingApp.Application.WorkspaceCQ.Commands;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace TasksTrackingApp.API.Controllers
 {
@@ -32,6 +30,13 @@ namespace TasksTrackingApp.API.Controllers
         }
         */
 
+        /// <summary>
+        /// Endpoint para criação de workspace
+        /// </summary>
+        /// <remarks>
+        /// POST api/workspaces/create-workspace
+        /// </remarks>
+        /// <returns></returns>
         public static async Task<IResult> CreateWorkspace([FromServices] IMediator _mediator,
                                                             [FromBody] CreateWorkspaceCommand command)
         {
@@ -42,6 +47,13 @@ namespace TasksTrackingApp.API.Controllers
             return Results.Ok(result);
         }
 
+        /// <summary>
+        /// Endpoint para edição de workspace
+        /// </summary>
+        /// <remarks>
+        /// POST api/workspaces/update-workspace
+        /// </remarks>
+        /// <returns></returns>
         public static async Task<IResult> EditWorkspace([FromServices] IMediator _mediator,
                                                             [FromBody] EditWorkspaceCommand command)
         {
@@ -52,6 +64,13 @@ namespace TasksTrackingApp.API.Controllers
             return Results.Ok(result);
         }
 
+        /// <summary>
+        /// Endpoint para exclusão de workspace
+        /// </summary>
+        /// <remarks>
+        /// POST api/workspaces/delete-workspace
+        /// </remarks>
+        /// <returns></returns>
         public static async Task<IResult> DeleteWorkspace([FromServices] IMediator _mediator,
                                                             Guid workspaceId)
         {

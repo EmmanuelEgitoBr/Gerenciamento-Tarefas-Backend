@@ -42,5 +42,6 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.WorkspacesRoutes();
+app.CardListsRoutes();
 
 app.Run();

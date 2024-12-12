@@ -9,6 +9,6 @@ namespace TasksTrackingApp.Domain.Entities
         public StatusItemEnum Status { get; set; }
         public DateTime? CreatedAt { get; set; } = DateTime.Now;
         public Workspace? Workspace { get; set; }
-        public ICollection<Card>? Cards { get; set; }
+        public ICollection<Card> Cards { get; set; } = new List<Card>();
     }
 }

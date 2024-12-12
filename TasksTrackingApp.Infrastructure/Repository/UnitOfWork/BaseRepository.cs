@@ -34,6 +34,12 @@ namespace TasksTrackingApp.Infrastructure.Repository.UnitOfWork
             return Task.CompletedTask;
         }
 
+        public async Task DeleteRange(List<T> range)
+        {
+            _tasksDbContext.Set<T>().RemoveRange(range);
+            await _tasksDbContext.SaveChangesAsync();
+        }
+
         public async Task<T> GetAsync(Expression<Func<T, bool>> expression)
         {
             return await _tasksDbContext.Set<T>().FirstOrDefaultAsync(expression);

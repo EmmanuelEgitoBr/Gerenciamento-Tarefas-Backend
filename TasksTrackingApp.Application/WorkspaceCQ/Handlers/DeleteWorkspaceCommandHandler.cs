@@ -28,7 +28,10 @@ namespace TasksTrackingApp.Application.WorkspaceCQ.Handlers
                 };
             }
 
+            var listCards = _unitOfWork.ListCardRepository.GetAllAsync().Result.Where(x => x.Workspace == workspace).ToList();
+            await _unitOfWork.ListCardRepository.DeleteRange(listCards);
             await _unitOfWork.WorkspaceRepository.Delete(workspace);
+
             _unitOfWork.Commit();
 
             return new ResponseBase<DeleteWorkspaceCommand>

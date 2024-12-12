@@ -25,8 +25,6 @@ namespace TasksTrackingApp.API.Controllers
         /// Endpoint para criação de usuário
         /// </summary>
         /// <remarks>
-        /// Exemplo de request
-        /// ```
         /// POST api/User/Create-User
         /// </remarks>
         /// <returns></returns>
