@@ -3,7 +3,7 @@ using MediatR;
 using TasksTrackingApp.Application.DTOs;
 using TasksTrackingApp.Application.Response;
 using TasksTrackingApp.Application.WorkspaceCQ.Commands;
-using TasksTrackingApp.Infrastructure.Repository.UnitOfWork;
+using TasksTrackingApp.Domain.Interfaces.UnityOfWork;
 
 namespace TasksTrackingApp.Application.WorkspaceCQ.Handlers
 {

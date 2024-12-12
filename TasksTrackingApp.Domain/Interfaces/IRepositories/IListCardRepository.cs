@@ -1,7 +1,7 @@
 ﻿using TasksTrackingApp.Domain.Entities;
-using TasksTrackingApp.Infrastructure.Repository.UnitOfWork;
+using TasksTrackingApp.Domain.Interfaces.IRepositories.Base;
 
-namespace TasksTrackingApp.Infrastructure.Repository.IRepositories
+namespace TasksTrackingApp.Domain.Interfaces.IRepositories
 {
     public interface IListCardRepository : IBaseRepository<ListCard>
     {

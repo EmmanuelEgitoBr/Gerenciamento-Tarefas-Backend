@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace TasksTrackingApp.Infrastructure.Repository.UnitOfWork
+namespace TasksTrackingApp.Domain.Interfaces.IRepositories.Base
 {
     public interface IBaseRepository<T> where T : class
     {

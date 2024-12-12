@@ -1,5 +1,6 @@
-﻿using TasksTrackingApp.Infrastructure.Persistence;
-using TasksTrackingApp.Infrastructure.Repository.IRepositories;
+﻿using TasksTrackingApp.Domain.Interfaces.IRepositories;
+using TasksTrackingApp.Domain.Interfaces.UnityOfWork;
+using TasksTrackingApp.Infrastructure.Persistence;
 using TasksTrackingApp.Infrastructure.Repository.Repositories;
 
 namespace TasksTrackingApp.Infrastructure.Repository.UnitOfWork

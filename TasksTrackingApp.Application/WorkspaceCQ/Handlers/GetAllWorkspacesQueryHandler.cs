@@ -4,7 +4,7 @@ using TasksTrackingApp.Application.DTOs;
 using TasksTrackingApp.Application.Response;
 using TasksTrackingApp.Application.Utils;
 using TasksTrackingApp.Application.WorkspaceCQ.Queries;
-using TasksTrackingApp.Infrastructure.Repository.UnitOfWork;
+using TasksTrackingApp.Domain.Interfaces.UnityOfWork;
 
 namespace TasksTrackingApp.Application.WorkspaceCQ.Handlers
 {

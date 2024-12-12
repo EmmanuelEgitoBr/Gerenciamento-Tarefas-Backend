@@ -1,6 +1,6 @@
-﻿using TasksTrackingApp.Infrastructure.Repository.IRepositories;
+﻿using TasksTrackingApp.Domain.Interfaces.IRepositories;
 
-namespace TasksTrackingApp.Infrastructure.Repository.UnitOfWork
+namespace TasksTrackingApp.Domain.Interfaces.UnityOfWork
 {
     public interface IUnitOfWork
     {

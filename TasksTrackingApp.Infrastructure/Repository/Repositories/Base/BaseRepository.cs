@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
+using TasksTrackingApp.Domain.Interfaces.IRepositories.Base;
 using TasksTrackingApp.Infrastructure.Persistence;
 
-namespace TasksTrackingApp.Infrastructure.Repository.UnitOfWork
+namespace TasksTrackingApp.Infrastructure.Repository.Repositories.Base
 {
     public class BaseRepository<T> : IBaseRepository<T> where T : class
     {

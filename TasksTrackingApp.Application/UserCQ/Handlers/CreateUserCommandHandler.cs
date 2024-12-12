@@ -5,7 +5,7 @@ using TasksTrackingApp.Application.Response;
 using TasksTrackingApp.Application.UserCQ.Commands;
 using TasksTrackingApp.Domain.Abstractions;
 using TasksTrackingApp.Domain.Entities;
-using TasksTrackingApp.Infrastructure.Repository.UnitOfWork;
+using TasksTrackingApp.Domain.Interfaces.UnityOfWork;
 
 namespace TasksTrackingApp.Application.UserCQ.Handlers
 {
