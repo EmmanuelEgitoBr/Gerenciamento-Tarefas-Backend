@@ -17,8 +17,4 @@
     <ProjectReference Include="..\TasksTrackingApp.Infrastructure\TasksTrackingApp.Infrastructure.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="CardCQ\Handlers\" />
-  </ItemGroup>
-
 </Project>

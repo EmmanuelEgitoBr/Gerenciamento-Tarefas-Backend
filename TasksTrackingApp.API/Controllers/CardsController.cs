@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TasksTrackingApp.Application.CardCQ.Commands;
+using TasksTrackingApp.Application.CardListsCQ.Commands;
 using TasksTrackingApp.Application.DTOs;
 
 namespace TasksTrackingApp.API.Controllers
@@ -21,7 +22,11 @@ namespace TasksTrackingApp.API.Controllers
         [HttpPost("create-card")]
         public async Task<ActionResult<CardDto>> CreateCard([FromBody] CreateCardCommand command)
         {
-            throw new NotImplementedException();
+            var result = await _mediator.Send(command);
+
+            if (result.Value is null) return BadRequest(result.Title);
+
+            return Ok(result.Value);
         }
 
         /// <summary>
@@ -34,7 +39,11 @@ namespace TasksTrackingApp.API.Controllers
         [HttpPut("update-card")]
         public async Task<ActionResult<CardDto>> EditCard([FromBody] EditCardCommand command)
         {
-            throw new NotImplementedException();
+            var result = await _mediator.Send(command);
+
+            if (result.Value is null) return BadRequest(result.Title);
+
+            return Ok(result.Value);
         }
 
         /// <summary>
@@ -47,7 +56,11 @@ namespace TasksTrackingApp.API.Controllers
         [HttpDelete("delete-card/{cardId:guid}")]
         public async Task<ActionResult<Guid>> DeleteCard(Guid cardId)
         {
-            throw new NotImplementedException();
+            var result = await _mediator.Send(new DeleteCardCommand { Id = cardId });
+
+            if (result.Value == Guid.Empty) return BadRequest(result.Title);
+
+            return Ok(result.Value);
         }
 
     }

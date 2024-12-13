@@ -33,7 +33,7 @@ namespace TasksTrackingApp.Application.CardListsCQ.Handlers
 
             return new ResponseBase<ListCardDto>
             {
-                Title = "Lista de cards encontrada com sucesso",
+                Title = "Lista de cards criada com sucesso",
                 HttpStatus = 201,
                 Value = listCardDto
             };
