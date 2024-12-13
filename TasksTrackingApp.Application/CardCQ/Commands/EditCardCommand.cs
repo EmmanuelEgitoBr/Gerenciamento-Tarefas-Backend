@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using TasksTrackingApp.Application.DTOs;
 using TasksTrackingApp.Application.Response;
+using TasksTrackingApp.Domain.Enums;
 
 namespace TasksTrackingApp.Application.CardCQ.Commands
 {
@@ -10,5 +11,6 @@ namespace TasksTrackingApp.Application.CardCQ.Commands
         public string? Title { get; set; }
         public string? Description { get; set; }
         public DateTime Deadline { get; set; }
+        public StatusCardEnum Status { get; set; }
     }
 }

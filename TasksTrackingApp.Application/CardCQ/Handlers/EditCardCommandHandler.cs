@@ -35,6 +35,10 @@ namespace TasksTrackingApp.Application.CardCQ.Handlers
             card.Title = request.Title!;
             card.Description = request.Description!;
             card.Deadline = request.Deadline!;
+            card.Status = request.Status!;
+
+            _unitOfWork.CardRepository.Update(card);
+            _unitOfWork.Commit();
 
             var cardDto = _mapper.Map<CardDto>(card);
 
